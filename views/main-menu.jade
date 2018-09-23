@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style-main-menu.css')
+  body
+    header
+      title Menu
+    img(src ="/images/karaoke.png", class="centerImg")
+    br
+    br
+    form
+      input(type="text", name="search", id="search" maxlength=30, size=30, class="textbox", placeholder="Enter between 2 & 30 characters")
+      div(class="searchGroup")
+        div(class="switch-field")
+          input(type="radio", name="param", value="Artist", label="Artist", id="switch_3_left")
+          label(for="switch_3_left") Artist
+          input(type="radio", name="param", value="Title", id="switch_3_center")
+          label(for="switch_3_center") Title
+          input(type="radio", name="param" value="Both", id="switch_3_right", checked)
+          label(for="switch_3_right",) Both
+        div(class="sbutton-div")
+          input(type="button", value="Search" class="sbutton", onclick="clickSearch()")
+      br
+      br
+      br
+      div( class="centerButtons")
+        input(type="button", class="button", value="Browse By Artist", onclick="searchMenu(\"/search/browse/byartist\")")
+        input(type="button", class="button", value="Browse By Title", onclick="searchMenu(\"/search/browse/bytitle\")")
+    script(type='text/javascript', src="/javascripts/main-menu.js")

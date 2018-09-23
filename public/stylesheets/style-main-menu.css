@@ -1,0 +1,135 @@
+body {
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ecf7f9;
+}
+
+.textbox {
+  font-size: 32px;
+  margin: 0px 8px;
+  padding: 14px 14px;
+  border-radius: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.searchGroup {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 20px 0px;
+}
+
+.searchGroup::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.switch-field input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.switch-field label {
+  float: left;
+}
+
+.switch-field label {
+  display: inline-block;
+  width: 70px;
+  background-color: #e4e4e4;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 32px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: none;
+  padding: 14px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition:    all 0.1s ease-in-out;
+  -ms-transition:     all 0.1s ease-in-out;
+  -o-transition:      all 0.1s ease-in-out;
+  transition:         all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  background-color: #cc0099;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: white;
+}
+
+.switch-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+
+.sbutton {
+  background-color: #cc0099;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  width: 30%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  margin: 0px 20px;
+  border-radius: 4px;
+  float: left;
+}
+
+.centerImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.centerButtons {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.button {
+  background-color: #cc0099;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  width: 30%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  margin: 0px 10px;
+  border-radius: 4px;
+}
+
+.button:active {
+  background-color: #990099;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button:hover {
+  cursor: pointer;
+}

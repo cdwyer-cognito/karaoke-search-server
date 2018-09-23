@@ -1,0 +1,53 @@
+body {
+    padding: 20px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #ecf7f9;
+}
+
+.button {
+    background-color: #cc0099;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 64px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+  
+.button:active {
+    background-color: #990099;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+  
+.button:hover {
+    cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    padding: 10px;
+    background-color: #ecf7f9;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 10px;
+    background-color: #ecf7f9;
+}
+
+.itemC5 {
+    grid-column: 3 / span 2;
+}
+
+.itemD5 {
+    grid-column: 5 / span 2;
+}
+
+

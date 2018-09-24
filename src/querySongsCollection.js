@@ -67,6 +67,10 @@ class QuerySongsCollection {
     async titleStartsWith(search){
         return await this.runQuery( { Title: { $regex: '^' +  search + '.*', $options: 'i'} } );
     }
+
+    async uid(uid){
+        return await this.runQuery( { UID: uid } );
+    }
 }
 
 module.exports = QuerySongsCollection;

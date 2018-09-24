@@ -38,7 +38,7 @@ router.get('/results/:field/:typeofsearch/:search', async function(req, res, nex
   } else if ( field === "artist" ) {
 
     if ( typeofsearch === "startswith" ) {
-      dbresults = await querySongsCollection.artistStartsWith( ( search === "num" ? "\W" : search ) );
+      dbresults = await querySongsCollection.artistStartsWith( ( search === "num" ? "[^a-zA-Z:]" : search ) );
     } else {
       dbresults = await querySongsCollection.findbyArtist(search);
     }
@@ -46,7 +46,7 @@ router.get('/results/:field/:typeofsearch/:search', async function(req, res, nex
   } else if ( field === "title" ) {
 
     if ( typeofsearch === "startswith" ) {
-      dbresults = await querySongsCollection.titleStartsWith( ( search === "num" ? "\W" : search ) );
+      dbresults = await querySongsCollection.titleStartsWith( ( search === "num" ? "[^a-zA-Z:]" : search ) );
     } else {
       dbresults = await querySongsCollection.findbyTitle(search);
     }
@@ -56,6 +56,15 @@ router.get('/results/:field/:typeofsearch/:search', async function(req, res, nex
 
   //res.render( 'results', { field: field, typeofsearch: typeofsearch, search: search } );
   res.send(dbresults);
+});
+
+router.get('/selected/:uid', async function(req, res, next) {
+  const uid = req.params.uid;
+
+  const selected = await querySongsCollection.uid(uid);
+
+  res.send(selected);
+
 });
 
 module.exports = router;

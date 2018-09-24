@@ -21,11 +21,10 @@ clickSearch = function(){
             field = "all";
         }
 
-        const url = "/search/find/" + field + "/" + search;
+        const url = "/search/results/" + field + "/contains/" + search;
         console.log("Sending request to " + encodeURI(url) );
-        fetch(url)
-            .catch(err => console.log(err));
         
+        window.location.href = url;        
         
     }
 

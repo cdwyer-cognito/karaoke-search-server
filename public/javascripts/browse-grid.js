@@ -8,16 +8,16 @@ clickButton = function(selection){
     const pageTitle = document.title;
 
     console.log("Page title read as " + pageTitle);
-    let url;
 
-    if( pageTitle === "Browse by Title" ) {
-        url = "/search/browse/bytitle/find/" + selection;
+    let field;
+
+    if ( pageTitle === "Browse by Title" ) {
+        field = "title";
     } else if ( pageTitle === "Browse by Artist" ) {
-        url = "/search/browse/byartist/find/" + selection;
+        field = "artist";
     }
 
-    console.log("GET " + url);
+    const url = "/search/results/" + field + "/startswith/" + selection;
 
-    fetch(url)
-    .catch(err => console.log(err));
+    window.location.href = url;
 }

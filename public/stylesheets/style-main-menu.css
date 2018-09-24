@@ -18,9 +18,9 @@ body {
 .searchGroup {
   text-align: center;
   margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  padding: 20px 0px;
+  margin-right: auto; 
+  display: flex;
+  max-width: 70%;
 }
 
 .searchGroup::after {
@@ -36,10 +36,6 @@ body {
   width: 1px;
   border: 0;
   overflow: hidden;
-}
-
-.switch-field label {
-  float: left;
 }
 
 .switch-field label {
@@ -80,7 +76,6 @@ body {
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
-
 .sbutton {
   background-color: #cc0099;
   border: none;
@@ -93,7 +88,6 @@ body {
   font-size: 32px;
   margin: 0px 20px;
   border-radius: 4px;
-  float: left;
 }
 
 .centerImg {

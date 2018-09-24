@@ -2,7 +2,8 @@ doctype html
 html
     head
         title Search Results
-        link(rel='stylesheet', href='/stylesheets/browse-grid.css')
+        link(rel='stylesheet', href='/stylesheets/results.css')
+        link(rel='stylesheet' href='/stylesheets/react-table.css')
     body
         p 
             h1 Search Results
@@ -13,4 +14,9 @@ html
         p
             h4 Field: #{field}
         p
+            h4 Type of Search: #{typeofsearch}
+        p
             h4 Search: #{search}
+            
+        script(src="https://unpkg.com/react-table@latest/react-table.js")
+        script(src="https://unpkg.com/react-table@latest/react-table.min.js")

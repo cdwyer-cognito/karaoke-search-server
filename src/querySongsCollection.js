@@ -1,65 +1,72 @@
-import { MongoClient as _MongoClient } from 'mongodb';
+class QuerySongsCollection {
 
-async function runQuery( jsonObj ){
-    const MongoClient = _MongoClient;
-	const url = "mongodb://localhost:27017/karaokeSearch";
-	const dbName = "karaoke";
-    const collection = "songs";
-    let results;
+    constructor(){
+        this.MongoClient = require('mongodb').MongoClient;
+        this.url = "mongodb://localhost:27017/karaokeSearch";
+        this.dbName = "karaoke";
+        this.collection = "songs";
+    }
 
-    await async function() {
-        let client;
-      
-        try {
-            client = await MongoClient.connect( url, { useNewUrlParser: true });
-            console.log("Connected correctly to server");
-      
-            const db = client.db( dbName );
+    async runQuery( jsonObj ){
 
-            const col = db.collection( collection );
-      
-            results = await col.find( jsonObj ).toArray();
+        let results;
 
-            console.log("There are " + results.length + " records returned");
-        } catch (err) {
-             console.log( err.stack );
-        }
-      
-        client.close();
-      }();
+        await async function() {
+            let client;
+        
+            try {
+                client = await this.MongoClient.connect( this.url, { useNewUrlParser: true });
+                console.log("Connected correctly to server");
+        
+                const db = client.db( this.dbName );
 
-    return results;
+                const col = db.collection( this.collection );
+        
+                results = await col.find( jsonObj ).toArray();
+
+                console.log("There are " + results.length + " records returned");
+            } catch (err) {
+                console.log( err.stack );
+            }
+        
+            client.close();
+        }();
+
+        return results;
+    }
+
+    regexEscape( string ){
+        return string.replace( /[.*+?^${}()|[\]\\]/g, '\\$&' );
+    }
+
+    async countRecords(){
+        return await this.runQuery( { Title: /.*/ } );
+    }
+
+    async findbyTitle( search ){
+        return await this.runQuery( { Title: { $regex:  regexEscape( search ), $options: 'i'} } ); 
+    }
+
+    async findbyArtist( search ){
+        return await this.runQuery( {Artist: { $regex:  regexEscape( search ), $options: 'i'} } ); 
+    }
+
+    async findinAll(search){
+        search =  this.regexEscape( search );
+        return await this.runQuery( { $or: [ 
+            { Title: { $regex: search, $options: 'i'} },
+            { Artist:  { $regex: search, $options: 'i'} } 
+            ] 
+        });
+    }
+
+    async artistStartsWith(search){
+        return await this.runQuery( { Artist: { $regex: '^' +  search + '.*', $options: 'i'} } );
+    }
+
+    async titleStartsWith(search){
+        return await runQuery( { Title: { $regex: '^' +  search + '.*', $options: 'i'} } );
+    }
 }
 
-function regexEscape( string ){
-    return string.replace( /[.*+?^${}()|[\]\\]/g, '\\$&' );
-}
-
-export async function countRecords(){
-    return await runQuery( { Title: /.*/ } );
-}
-
-export async function findbyTitle( search ){
-    return await runQuery( { Title: { $regex:  regexEscape( search ), $options: 'i'} } ); 
-}
-
-export async function findbyArtist( search ){
-    return await runQuery( {Artist: { $regex:  regexEscape( search ), $options: 'i'} } ); 
-}
-
-export async function findinAll(search){
-    search =  regexEscape( search );
-    return await runQuery( { $or: [ 
-        { Title: { $regex: search, $options: 'i'} },
-        { Artist:  { $regex: search, $options: 'i'} } 
-        ] 
-    });
-}
-
-export async function artistStartsWith(search){
-    return await runQuery( { Artist: { $regex: '^' +  search + '.*', $options: 'i'} } );
-}
-
-export async function titleStartsWith(search){
-    return await runQuery( { Title: { $regex: '^' +  search + '.*', $options: 'i'} } );
-}
+module.exports = QuerySongsCollection;

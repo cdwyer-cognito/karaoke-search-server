@@ -1,14 +1,18 @@
 class QueryRequestCollection {
 
     constructor(){
-        this.MongoClient = require('mongodb').MongoClient;
-        this.equal = require('assert');
         this.url = "mongodb://localhost:27017/karaokeSearch";
         this.dbName = "karaoke";
         this.collection = "requests";
     }
 
     async addRequest( jsonObj ) {
+
+        const MongoClient = require('mongodb').MongoClient;
+        const equal = require('assert');
+        const url = this.url;
+        const dbName = this.dbName;
+        const collection = this.collection;
 
         function guid() {
             function s4() {
@@ -26,13 +30,13 @@ class QueryRequestCollection {
         
             try {
 
-                client = await this.MongoClient.connect( this.url, { useNewUrlParser: true });
+                client = await MongoClient.connect( url, { useNewUrlParser: true });
                 console.log("Connected correctly to server");
                 
-                const db = client.db( this.dbName );
+                const db = client.db( dbName );
             
-                let r = await db.collection( this.collection ).insertOne({
-                    GUID: this.guid(),
+                let r = await db.collection( collection ).insertOne({
+                    GUID: guid(),
                     Singer: jsonObj.Singer,
                     DiscRef: jsonObj.DiscRef,
                     Artist: jsonObj.Artist,
@@ -42,7 +46,7 @@ class QueryRequestCollection {
                 });
 
                 equal( 1, r.insertedCount );
-                console.log("Data added to " + this.collection + " collection");  
+                console.log("Data added to " + collection + " collection");  
                     
             } catch (err) {
                 console.log( err.stack );
@@ -64,12 +68,12 @@ class QueryRequestCollection {
             let client;
         
             try {
-                client = await this.MongoClient.connect( this.url, { useNewUrlParser: true } );
+                client = await MongoClient.connect( url, { useNewUrlParser: true } );
                 console.log("Connected correctly to server");
         
-                const db = client.db( this.dbName );
+                const db = client.db( dbName );
 
-                const col = db.collection( this.collection );
+                const col = db.collection( collection );
         
                 results = await col.find( { Singer: /.*/ } ).toArray();
 
@@ -87,15 +91,21 @@ class QueryRequestCollection {
 
     async requestCompleted( jsonObj ){
 
+        const MongoClient = require('mongodb').MongoClient;
+        const equal = require('assert');
+        const url = this.url;
+        const dbName = this.dbName;
+        const collection = this.collection;
+
         await async function() {
             let client;
         
             try {
-            client = await this.MongoClient.connect( this.url,  { useNewUrlParser: true } );
+            client = await MongoClient.connect( url,  { useNewUrlParser: true } );
             console.log("Connected correctly to server");
         
-            const db = client.db( this.dbName );
-            const col = db.collection( this.collection );
+            const db = client.db( dbName );
+            const col = db.collection( collection );
 
             let r = await col.updateOne( { GUID: jsonObj.GUID },  {$set: {State: true } } );
             equal( 1, r.matchedCount );
@@ -113,28 +123,37 @@ class QueryRequestCollection {
 
     async clearRequestsCollection(){
 
+        const MongoClient = require('mongodb').MongoClient;
+        const equal = require('assert');
+        const url = this.url;
+        const dbName = this.dbName;
+        const collection = this.collection;
+
         console.log("Dropping " + collection + " collection in " + dbName);
 
-	await async function(){
-		let client;
+	    await async function(){
+		    let client;
 	  
-		try {
-		  	client = await this.MongoClient.connect( this.url, { useNewUrlParser: true } );
-		  	console.log("Connected correctly to server");
-		    
-		  	const db = client.db( this.dbName );
-		
-			let r = await db.collection( this.collection ).drop();
-			console.log(this.collection + " collection dropped");
-		
-		} catch ( err ) {
-		  	console.log( err.stack );
-		}
-	  
-		if ( client ) {
-		 	client.close();
-		}
-	}();
+            try {
+                client = await MongoClient.connect( url, { useNewUrlParser: true } );
+                console.log("Connected correctly to server");
+                
+                const db = client.db( dbName );
+            
+                let r = await db.collection( collection ).drop();
+                console.log(collection + " collection dropped");
+            
+            } catch ( err ) {
+                console.log( err.stack );
+                return "ERROR: Failed to drop " + collection + " collection" + "<br/>" + err.stack;  
+            }
+        
+            if ( client ) {
+                client.close();
+            }
+            
+            return "Sucessfully dropped " + collection + " collection";
+        }();
 
     }
 }

@@ -25,7 +25,7 @@ router.get('/browse/bytitle', function(req, res, next) {
 });
 
 // results
-router.get('/results/:field/:typeofsearch/:search', function(req, res, next) {
+router.get('/results/:field/:typeofsearch/:search', async function(req, res, next) {
   const field = req.params.field; // especting: "artist", title", or "all"
   const typeofsearch = req.params.typeofsearch; // expecting: "startswith" or "contains"
   const search = decodeURI( req.params.search );
@@ -33,28 +33,29 @@ router.get('/results/:field/:typeofsearch/:search', function(req, res, next) {
 
   if ( field === "all"){
 
-    //dbresults = querySongsCollection.findinAll(search); 
+    dbresults = await querySongsCollection.findinAll(search); 
 
   } else if ( field === "artist" ) {
 
     if ( typeofsearch === "startswith" ) {
-      //dbresults = querySongsCollection.artistStartsWith( ( search === "num" ? "\W" : search ) );
+      dbresults = await querySongsCollection.artistStartsWith( ( search === "num" ? "\W" : search ) );
     } else {
-      //dbresults = querySongsCollection.findbyArtist(search);
+      dbresults = await querySongsCollection.findbyArtist(search);
     }
 
   } else if ( field === "title" ) {
 
     if ( typeofsearch === "startswith" ) {
-      //dbresults = querySongsCollection.titleStartsWith( ( search === "num" ? "\W" : search ) );
+      dbresults = await querySongsCollection.titleStartsWith( ( search === "num" ? "\W" : search ) );
     } else {
-      //dbresults = querySongsCollection.findbyTitle(search);
+      dbresults = await querySongsCollection.findbyTitle(search);
     }
 
   }
 
 
-  res.render( 'results', { field: field, typeofsearch: typeofsearch, search: search } );
+  //res.render( 'results', { field: field, typeofsearch: typeofsearch, search: search } );
+  res.send(dbresults);
 });
 
 module.exports = router;

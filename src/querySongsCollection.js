@@ -1,13 +1,13 @@
 class QuerySongsCollection {
 
     constructor(){
-        this.MongoClient = require('mongodb').MongoClient;
-        this.url = "mongodb://localhost:27017/karaokeSearch";
-        this.dbName = "karaoke";
-        this.collection = "songs";
     }
 
     async runQuery( jsonObj ){
+        const MongoClient = require('mongodb').MongoClient;
+        const url = "mongodb://localhost:27017/karaokeSearch";
+        const dbName = "karaoke";
+        const collection = "songs";
 
         let results;
 
@@ -15,12 +15,12 @@ class QuerySongsCollection {
             let client;
         
             try {
-                client = await this.MongoClient.connect( this.url, { useNewUrlParser: true });
+                client = await MongoClient.connect( url, { useNewUrlParser: true });
                 console.log("Connected correctly to server");
         
-                const db = client.db( this.dbName );
+                const db = client.db( dbName );
 
-                const col = db.collection( this.collection );
+                const col = db.collection( collection );
         
                 results = await col.find( jsonObj ).toArray();
 
@@ -44,15 +44,15 @@ class QuerySongsCollection {
     }
 
     async findbyTitle( search ){
-        return await this.runQuery( { Title: { $regex:  regexEscape( search ), $options: 'i'} } ); 
+        return await this.runQuery( { Title: { $regex:  this.regexEscape( search ), $options: 'i'} } ); 
     }
 
     async findbyArtist( search ){
-        return await this.runQuery( {Artist: { $regex:  regexEscape( search ), $options: 'i'} } ); 
+        return await this.runQuery( {Artist: { $regex:  this.regexEscape( search ), $options: 'i'} } ); 
     }
 
     async findinAll(search){
-        search =  this.regexEscape( search );
+        search = this.regexEscape( search );
         return await this.runQuery( { $or: [ 
             { Title: { $regex: search, $options: 'i'} },
             { Artist:  { $regex: search, $options: 'i'} } 
@@ -65,7 +65,7 @@ class QuerySongsCollection {
     }
 
     async titleStartsWith(search){
-        return await runQuery( { Title: { $regex: '^' +  search + '.*', $options: 'i'} } );
+        return await this.runQuery( { Title: { $regex: '^' +  search + '.*', $options: 'i'} } );
     }
 }
 

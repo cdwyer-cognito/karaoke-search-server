@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/admin.css')
+  body
+    header
+      title Admin Menu
+    p
+        h1 Admin Menu
+    br
+    br
+    form
+        div( class="centerButtons")
+            input(type="button", class="button", value="Reload Library", onclick="reloadLibrary()")
+            input(type="button", class="button", value="Drop Requests", onclick="dropRequests()")
+        br
+        div( class="centerButtons")
+            input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
+            input(type="button", class="button", value="Requests Menu", onclick="navRequestsMenu()")
+        p
+            h3 #{message}
+    script(type='text/javascript', src="/javascripts/admin.js")

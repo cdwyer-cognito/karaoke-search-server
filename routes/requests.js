@@ -1,5 +1,3 @@
-//import { test } from '../src/queryRequestsCollection';
-
 const express = require('express');
 const router = express.Router();
 const httpMessageParser = require('http-message-parser');

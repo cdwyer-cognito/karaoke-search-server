@@ -16,16 +16,18 @@ postMessage = async function(url){
 }
 
 reloadLibrary = function(){
-    console.log("Reload Library Db")
-
-    postMessage("/admin/load-library");
+    console.log("Reload Library Db");
+    if ( confirm("Are You Sure You Want to Load / Reload the Karaoke Library?") ) {
+        postMessage("/admin/load-library");
+    }
 
 }
 
 dropRequests = function(){
-    console.log("Drop Requests Db")
-    postMessage("/admin/drop-requests");
-
+    console.log("Drop Requests Db");
+    if ( confirm("Are You Sure You Want to drop the Drop the Requests Db?") ) {
+        postMessage("/admin/drop-requests");
+    }
 
 }
 

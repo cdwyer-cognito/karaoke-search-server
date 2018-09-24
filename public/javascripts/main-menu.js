@@ -9,7 +9,7 @@ clickSearch = function(){
     let field;
 
     if (search.length < 2 ) {
-        window.alert("Plese enter 2 or more characters");  
+       alert("Plese enter 2 or more characters");  
     } else {
         
 

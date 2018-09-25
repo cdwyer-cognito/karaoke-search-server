@@ -1,0 +1,41 @@
+doctype html
+html
+    head
+        title Karaoke Request
+        link(rel='stylesheet', href='/stylesheets/selected.css')
+    body
+        p 
+            h1 Karaoke Request
+        -let songData = data[0]
+        form
+            div(class="grid-container")
+                div(class="grid-item itemA1")
+                    p Your Name:
+                div(class="grid-item itemB1")
+                    input(type="text", name="singer", id="singer", class="inputText", maxlength=30, placeholder="Enter a maximum of 30 characters")
+                div(class="grid-item itemA2")
+                    p Title:
+                div(class="grid-item itemB2")
+                    input(type="text", name="title", class="readOnlyText", value=songData.Title, readonly )
+                div(class="grid-item itemA3")
+                    p Artist:
+                div(class="grid-item itemB3")
+                    input(type="text", name="artist", class="readOnlyText", value=songData.Artist, readonly )
+                div(class="grid-item itemA4")
+                    p Disc Ref:
+                div(class="grid-item itemB4")
+                    input(type="text", name="disc-ref", class="readOnlyText", value=songData.DiskRef, readonly )
+                div(class="grid-item itemC4")
+                    p Duration:
+                div(class="grid-item itemD4")
+                    input(type="text", name="duration", class="readOnlyText", value=songData.Length, readonly )
+                div(class="grid-item itemE4")
+                    p Key:
+                div(class="grid-item itemF4")                   
+                    input(type="text", name="key", class="readOnlyText", value=songData.Key, readonly )
+            br
+            div( class="centerButtons")
+                input(type="button", class="button", value="Back", onclick="clickedBack()")
+                input(type="button", class="button", value="Submit", onclick="clickedSubmit()")
+            input(type="text", name="jsonObj", id="jsonObj", style="display:none;", value=JSON.stringify(songData), readonly )
+        script(type='text/javascript', src="/javascripts/selected.js") 

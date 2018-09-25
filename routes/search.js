@@ -30,6 +30,8 @@ router.get('/results/:field/:typeofsearch/:search', async function(req, res, nex
   const typeofsearch = req.params.typeofsearch; // expecting: "startswith" or "contains"
   const search = decodeURI( req.params.search );
   let dbresults;
+  let sortKey1 = "Artist";
+  let sortKey2 = "Title";
 
   if ( field === "all"){
 
@@ -51,20 +53,44 @@ router.get('/results/:field/:typeofsearch/:search', async function(req, res, nex
       dbresults = await querySongsCollection.findbyTitle(search);
     }
 
+    sortKey1 = "Title";
+    sortKey2 = "Artist";
+
   }
 
+  // sort results
+  dbresults.sort(function(a,b){
+    if ( a[sortKey1] < b[sortKey1] ) {
+      return -1;
+    }
 
-  //res.render( 'results', { field: field, typeofsearch: typeofsearch, search: search } );
-  res.send(dbresults);
+    if ( a[sortKey1] > b[sortKey1] ) {
+      return 1;
+    }
+
+    // If it's got this far the now sort by the second key
+    if ( a[sortKey2] < b[sortKey2] ) {
+      return -1;
+    }
+
+    if ( a[sortKey2] > b[sortKey2] ) {
+      return 1;
+    }
+    
+    return 0;
+  });
+ 
+  res.render('results', { data: dbresults, field: field });
+
 });
 
-router.get('/selected/:uid', async function(req, res, next) {
+router.get('/results/selected/:uid', async function(req, res, next) {
   const uid = req.params.uid;
 
-  const selected = await querySongsCollection.uid(uid);
+  const data = await querySongsCollection.uid(uid);
 
-  res.send(selected);
-
+  res.render('selected', { data: data });
+  
 });
 
 module.exports = router;

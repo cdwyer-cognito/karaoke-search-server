@@ -3,20 +3,46 @@ html
     head
         title Search Results
         link(rel='stylesheet', href='/stylesheets/results.css')
-        link(rel='stylesheet' href='/stylesheets/react-table.css')
     body
         p 
             h1 Search Results
-        p
-            h2 Placeholder Page
-        p
-            h3 Search
-        p
-            h4 Field: #{field}
-        p
-            h4 Type of Search: #{typeofsearch}
-        p
-            h4 Search: #{search}
-            
-        script(src="https://unpkg.com/react-table@latest/react-table.js")
-        script(src="https://unpkg.com/react-table@latest/react-table.min.js")
+        -let tableData = data
+        div
+            input(type="button", class="button", value="Back", onclick="clickedBack()")
+            input(type="search", class="light-table-filter", data-table="order-table", placeholder="Filter")
+        br    
+        div(class='table-div')
+            table(class="order-table table")
+                thead
+                    tr
+                    if field == 'title'
+                        th Disc Ref
+                        th Title
+                        th Artist
+                        th Key
+                        th Duration
+                    else
+                        th Disc Ref
+                        th Artist
+                        th Title
+                        th Key
+                        th Duration
+                tbody
+                    each element in tableData
+                        tr
+                        if field == 'title'
+                            td=element.DiscRef
+                            td=element.Title
+                            td=element.Artist
+                            td=element.Key
+                            td=element.Length
+                            td(style="display:none;")=element.UID
+                        else
+                            td=element.DiscRef
+                            td=element.Artist
+                            td=element.Title
+                            td=element.Key
+                            td=element.Length
+                            td(style="display:none;")=element.UID
+                
+        script(type='text/javascript', src="/javascripts/results.js")           

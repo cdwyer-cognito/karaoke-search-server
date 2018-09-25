@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const httpMessageParser = require('http-message-parser');
 const QueryRequestsCollection = require('../src/queryRequestsCollection');
 const queryRequestsCollection = new QueryRequestsCollection();
 
@@ -14,8 +13,7 @@ router.get('/test', function(req, res, next) {
 });
 
 router.post('/new-request', function(req, res, next){
-  const message = httpMessageParser(req);
-  const body = JSON.parse(message.body);
+  const body = req.body;
 
   let status = queryRequestsCollection.addRequest(body);
 

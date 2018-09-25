@@ -1,0 +1,85 @@
+body {
+    padding: 20px;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #ecf7f9;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    padding: 10px;
+    background-color: #ecf7f9;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    padding: 10px;
+    background-color: #ecf7f9;
+}
+
+.itemB1 {
+    grid-column: 2 / span 5;
+}
+
+.itemB2 {
+    grid-column: 2 / span 5;
+}
+
+.itemB3 {
+    grid-column: 2 / span 5;
+}
+
+
+.inputText {
+    font-size: 24px;
+    margin: 0px 8px;
+    padding: 8px 8px;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.readOnlyText {
+    font-size: 24px;
+    margin: 0px 8px;
+    padding: 8px 8px;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.centerButtons {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+  
+.button {
+    background-color: #cc0099;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    margin: 0px 10px;
+    border-radius: 4px;
+}
+  
+.button:active {
+    background-color: #990099;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+  
+.button:hover {
+    cursor: pointer;
+}

@@ -5,8 +5,8 @@ const loadXML = new LoadXML();
 const QueryRequestsCollection = require('../src/queryRequestsCollection');
 const queryRequestsCollection = new QueryRequestsCollection();
 
-router.get('/', function(req, res, next) {
-  res.render('admin', { message: "" });
+router.get('/', async function(req, res, next) {
+  res.render('admin', { });
 });
 
 router.post('/load-library', async function(req, res, next) {

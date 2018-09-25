@@ -13,6 +13,7 @@ class QueryRequestCollection {
         const url = this.url;
         const dbName = this.dbName;
         const collection = this.collection;
+        let dataObj;
 
         function guid() {
             function s4() {
@@ -34,8 +35,8 @@ class QueryRequestCollection {
                 console.log("Connected correctly to server");
                 
                 const db = client.db( dbName );
-            
-                let r = await db.collection( collection ).insertOne({
+
+                dataObj = {
                     GUID: guid(),
                     Singer: jsonObj.Singer,
                     DiscRef: jsonObj.DiscRef,
@@ -43,20 +44,22 @@ class QueryRequestCollection {
                     Title: jsonObj.Title,
                     DateTime: new Date(),
                     State: false
-                });
+                }
+            
+                let r = await db.collection( collection ).insertOne(dataObj);
 
                 equal( 1, r.insertedCount );
                 console.log("Data added to " + collection + " collection");  
                     
             } catch (err) {
                 console.log( err.stack );
-                return "Failed";
+                return { Status: "failed", Request: dataObj };
             }
         
             if (client) {
                 client.close();
             }
-            return "Success";
+            return { Status: "success", Request: dataObj };
         }();
     }
 
@@ -75,7 +78,7 @@ class QueryRequestCollection {
 
                 const col = db.collection( collection );
         
-                results = await col.find( { Singer: /.*/ } ).toArray();
+                results = await col.find( { GUID: /.*/ } ).toArray();
 
                 console.log("There are " + results.length + " records returned");
             } catch (err) {
@@ -155,6 +158,10 @@ class QueryRequestCollection {
             return "Sucessfully dropped " + collection + " collection";
         }();
 
+    }
+
+    async countRecords(){
+        return await this.getRequests().length;
     }
 }
 

@@ -40,7 +40,8 @@ class QuerySongsCollection {
     }
 
     async countRecords(){
-        return await this.runQuery( { Title: /.*/ } );
+        const count = await this.runQuery( { UID: /.*/ } );
+        return count.length;
     }
 
     async findbyTitle( search ){

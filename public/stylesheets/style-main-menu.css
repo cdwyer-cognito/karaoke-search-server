@@ -12,15 +12,14 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 60%;
 }
 
 .searchGroup {
   text-align: center;
   margin-left: auto;
   margin-right: auto; 
-  display: flex;
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .searchGroup::after {
@@ -76,18 +75,31 @@ body {
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
-.sbutton {
-  background-color: #cc0099;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  width: 30%;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  background-color: #ecf7f9;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  padding: 10px;
+  background-color: #ecf7f9;
+}
+
+.itemA1 {
+  grid-column: 1 / span 2;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 32px;
-  margin: 0px 20px;
-  border-radius: 4px;
+}
+
+.itemA2 .itemA3 .itemB2 .itemB3{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; 
+  display: flex;
 }
 
 .centerImg {
@@ -97,19 +109,12 @@ body {
   width: 50%;
 }
 
-.centerButtons {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
 .button {
   background-color: #cc0099;
   border: none;
   color: white;
   padding: 15px 32px;
-  width: 30%;
+  width: 100%;
   text-align: center;
   text-decoration: none;
   display: inline-block;

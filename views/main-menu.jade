@@ -7,22 +7,23 @@ html
       title Menu
     img(src ="/images/karaoke.png", class="centerImg")
     br
-    br
     form
-      input(type="text", name="search", id="search" maxlength=30, size=30, class="textbox", placeholder="Enter between 2 & 30 characters")
-      div(class="searchGroup")
-        div(class="switch-field")
-          input(type="radio", name="param", value="Artist", label="Artist", id="switch_3_left")
-          label(for="switch_3_left") Artist
-          input(type="radio", name="param", value="Title", id="switch_3_center")
-          label(for="switch_3_center") Title
-          input(type="radio", name="param" value="Both", id="switch_3_right", checked)
-          label(for="switch_3_right",) Both
-        input(type="button", value="Search" class="sbutton", onclick="clickSearch()")
-      br
-      br
-      br
-      div( class="centerButtons")
-        input(type="button", class="button", value="Browse By Artist", onclick="searchMenu(\"/search/browse/byartist\")")
-        input(type="button", class="button", value="Browse By Title", onclick="searchMenu(\"/search/browse/bytitle\")")
+      div(class="grid-container")
+        div(class="grid-item itemA1")
+          input(type="text", name="search", id="search" maxlength=30, size=30, class="textbox", placeholder="Enter between 2 & 30 characters")
+        div(class="grid-item itemA2")
+          div(class="searchGroup")
+            div(class="switch-field")
+              input(type="radio", name="param", value="Artist", label="Artist", id="switch_3_left")
+              label(for="switch_3_left") Artist
+              input(type="radio", name="param", value="Title", id="switch_3_center")
+              label(for="switch_3_center") Title
+              input(type="radio", name="param" value="Both", id="switch_3_right", checked)
+              label(for="switch_3_right",) Both
+        div(class="grid-item itemB2")
+          input(type="button", value="Search" class="button", onclick="clickSearch()")
+        div(class="grid-item itemA3")
+          input(type="button", class="button", value="Browse By Artist", onclick="searchMenu(\"/search/browse/byartist\")")
+        div(class="grid-item itemB3")
+          input(type="button", class="button", value="Browse By Title", onclick="searchMenu(\"/search/browse/bytitle\")")
     script(type='text/javascript', src="/javascripts/main-menu.js")

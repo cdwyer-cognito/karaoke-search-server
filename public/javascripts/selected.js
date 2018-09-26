@@ -7,7 +7,7 @@ clickedSubmit = async function(){
     const singer = document.getElementById("singer").value;
 
     if (singer.length < 2 ) {
-        alert("Plese enter 2 or more characters");  
+        alert("Plese enter Your Name");  
     } else {
         let dataObj = JSON.parse( document.getElementById("jsonObj").value );
         let url = "/requests/new-request"

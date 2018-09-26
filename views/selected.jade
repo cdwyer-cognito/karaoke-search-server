@@ -24,7 +24,7 @@ html
                 div(class="grid-item itemA4")
                     p Disc Ref:
                 div(class="grid-item itemB4")
-                    input(type="text", name="disc-ref", class="readOnlyText", value=songData.DiskRef, readonly )
+                    input(type="text", name="disc-ref", class="readOnlyText", value=songData.DiscRef, readonly )
                 div(class="grid-item itemC4")
                     p Duration:
                 div(class="grid-item itemD4")
@@ -33,7 +33,6 @@ html
                     p Key:
                 div(class="grid-item itemF4")                   
                     input(type="text", name="key", class="readOnlyText", value=songData.Key, readonly )
-            br
             div( class="centerButtons")
                 input(type="button", class="button", value="Back", onclick="clickedBack()")
                 input(type="button", class="button", value="Submit", onclick="clickedSubmit()")

@@ -1,6 +1,4 @@
 onload = function(){
-    console.log("function called");
-
     let timeleft = 10;
     let downloadTimer = setInterval(function(){
         timeleft--;
@@ -14,5 +12,4 @@ onload = function(){
             window.location.href = "/search/menu";
         }
     },1000);
-
 }

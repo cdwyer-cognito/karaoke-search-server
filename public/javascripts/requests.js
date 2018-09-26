@@ -73,3 +73,15 @@ clickedCompleted = function(guid){
     })
     .catch(err => console.log(err));
 }
+
+onload = function(){
+    let timeleft = 60;
+    let refreshPage = setInterval(function(){
+        timeleft--;
+        if ( timeleft <= 0 ) {
+            clearInterval(refreshPage);
+            location.reload(true);
+        }
+    },1000);
+
+}

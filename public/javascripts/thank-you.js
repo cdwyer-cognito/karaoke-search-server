@@ -6,7 +6,7 @@ onload = function(){
         timeleft--;
         console.log(timeleft);
         
-        document.getElementById("countdown").innerHTML = "Returining to Main Menu in: " + timeleft;
+        document.getElementById("countdown").innerHTML = "Returning to the Main Menu in: " + timeleft;
         
         if ( timeleft <= 0 ) {
             console.log("Timer expired");

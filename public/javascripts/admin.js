@@ -46,7 +46,5 @@ navMainMenu = function(){
 }
 
 navRequestsMenu = function(){
-
-
-
+    window.location.href = "/requests";
 }

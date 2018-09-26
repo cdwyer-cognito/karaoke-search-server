@@ -43,7 +43,8 @@ class QueryRequestCollection {
                     Artist: jsonObj.Artist,
                     Title: jsonObj.Title,
                     DateTime: new Date(),
-                    State: false
+                    State: false,
+                    CompletedDateTime: 0
                 }
             
                 let r = await db.collection( collection ).insertOne(dataObj);
@@ -66,6 +67,10 @@ class QueryRequestCollection {
     async getRequests(){
 
         let results;
+        const MongoClient = require('mongodb').MongoClient;
+        const url = this.url;
+        const dbName = this.dbName;
+        const collection = this.collection;
         
         await async function() {
             let client;
@@ -110,11 +115,11 @@ class QueryRequestCollection {
             const db = client.db( dbName );
             const col = db.collection( collection );
 
-            let r = await col.updateOne( { GUID: jsonObj.GUID },  {$set: {State: true } } );
+            let r = await col.updateOne( { GUID: jsonObj.GUID },  {$set: {State: true, CompletedDateTime: new Date() } } );
             equal( 1, r.matchedCount );
             equal( 1, r.modifiedCount );
 
-            console.log("Request for " + jsonObj.Singer + " is complete");
+            console.log("Request for " + jsonObj.GUID + " is complete");
                     
             } catch (err) {
             console.log( err.stack );
@@ -127,7 +132,6 @@ class QueryRequestCollection {
     async clearRequestsCollection(){
 
         const MongoClient = require('mongodb').MongoClient;
-        const equal = require('assert');
         const url = this.url;
         const dbName = this.dbName;
         const collection = this.collection;

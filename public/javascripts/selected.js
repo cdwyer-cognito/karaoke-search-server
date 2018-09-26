@@ -26,6 +26,7 @@ clickedSubmit = async function(){
         .then( (res) => {
             if ( res.status === 200 ) {
                 console.log(res);
+                window.location.href = "/requests/new-request/thank-you";
             }
         })
         .catch(err => console.log(err));

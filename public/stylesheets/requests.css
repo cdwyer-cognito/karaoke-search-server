@@ -102,3 +102,8 @@ table {
 .button:hover {
     cursor: pointer;
 }
+
+td:hover{
+    background-color:lightgoldenrodyellow;
+    cursor:pointer;
+}

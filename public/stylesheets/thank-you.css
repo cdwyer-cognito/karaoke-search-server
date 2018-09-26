@@ -2,4 +2,8 @@ body {
     padding: 20px;
     font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #ecf7f9;
-  }
+}
+
+.text-container {
+  position: relative;
+}

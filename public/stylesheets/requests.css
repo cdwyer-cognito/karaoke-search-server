@@ -6,6 +6,11 @@ body {
     background-color: #ecf7f9;
 }
 
+.table-container {
+    position: relative;
+}
+
+
 .table caption+thead tr:first-child th, .table colgroup+thead tr:first-child th, .table thead:first-child tr:first-child th, .table caption+thead tr:first-child td, .table colgroup+thead tr:first-child td, .table thead:first-child tr:first-child td {
     border-top: 0;
 }

@@ -3,12 +3,6 @@ const router = express.Router();
 const QuerySongsCollection = require('../src/querySongsCollection');
 const querySongsCollection = new QuerySongsCollection();
 
-/* GET search listing. */
-router.get('/', function(req, res, next) {
-  res.send('TBD search');
-});
-
-/* UI Pages */
 // main menu
 router.get('/menu', function(req, res, next) {
     res.render('main-menu', { });

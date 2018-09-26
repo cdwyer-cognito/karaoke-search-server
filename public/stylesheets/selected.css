@@ -1,5 +1,4 @@
 body {
-    padding: 20px;
     font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #ecf7f9;
 }
@@ -9,6 +8,7 @@ body {
     grid-template-columns: auto auto auto auto auto auto;
     padding: 10px;
     background-color: #ecf7f9;
+    position: relative;
 }
 
 .grid-container > div {

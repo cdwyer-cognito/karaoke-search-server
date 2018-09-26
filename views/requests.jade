@@ -6,48 +6,49 @@ html
     body
         -let pendingTableData = pendingData
         -let completedTableData = completedData
-        p
-            h2 Pending Requests    
-        div(class='table-div')
-            table(class="order-table table")
-                thead
-                    tr
-                        th Date Time
-                        th Singer
-                        th Title
-                        th Artist
-                        th Disc Ref
-                        th Duration
-                        th Completed
-                tbody
-                    each element in pendingTableData
+        div(class="table-container")
+            p
+                h2 Pending Requests    
+            div(class='table-div')
+                table(class="order-table table")
+                    thead
                         tr
-                            td=element.DateTime.toLocaleString()
-                            td=element.Singer
-                            td=element.Title
-                            td=element.Artist
-                            td=element.DiscRef
-                            td=element.Length
-                            td
-                                input(type="button", class="button", value="Yes", onclick="clickedCompleted(\"" + element.GUID + "\")")
-        p
-            h2 Completed Requests
-        div(class='table-div')
-            table(class="order-table table")
-                thead
-                    tr
-                        th Completed
-                        th Singer
-                        th Title
-                        th Artist
-                        th Disc Ref
-                tbody
-                    each element in completedTableData
+                            th Date Time
+                            th Singer
+                            th Title
+                            th Artist
+                            th Disc Ref
+                            th Duration
+                            th Completed
+                    tbody
+                        each element in pendingTableData
+                            tr
+                                td=element.DateTime.toLocaleString()
+                                td=element.Singer
+                                td=element.Title
+                                td=element.Artist
+                                td=element.DiscRef
+                                td=element.Length
+                                td
+                                    input(type="button", class="button", value="Yes", onclick="clickedCompleted(\"" + element.GUID + "\")")
+            p
+                h2 Completed Requests
+            div(class='table-div')
+                table(class="order-table table")
+                    thead
                         tr
-                            td=element.CompletedDateTime.toLocaleString()
-                            td=element.Singer
-                            td=element.Title
-                            td=element.Artist
-                            td=element.DiscRef
-                            td(style="display:none;")=element.GUID
+                            th Completed
+                            th Singer
+                            th Title
+                            th Artist
+                            th Disc Ref
+                    tbody
+                        each element in completedTableData
+                            tr
+                                td=element.CompletedDateTime.toLocaleString()
+                                td=element.Singer
+                                td=element.Title
+                                td=element.Artist
+                                td=element.DiscRef
+                                td(style="display:none;")=element.GUID
         script(type='text/javascript', src="/javascripts/requests.js")     

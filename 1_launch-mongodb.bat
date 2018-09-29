@@ -1,6 +1,6 @@
-mkdir "C:\git\karaoke-search\data\db"
-mkdir "C:\git\karaoke-search\data\logs"
+mkdir "D:\github\karaoke-search-server\data\db"
+mkdir "D:\github\karaoke-search-server\data\logs"
 C:
 cd "C:\Program Files\MongoDB\Server\4.0\bin\"
-mongod.exe --dbpath "C:\git\karaoke-search\data\db"
+mongod.exe --dbpath "D:\github\karaoke-search-server\data\db"
 pause

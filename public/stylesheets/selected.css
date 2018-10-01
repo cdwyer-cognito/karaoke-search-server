@@ -1,5 +1,5 @@
 body {
-    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #ecf7f9;
 }
 
@@ -9,6 +9,7 @@ body {
     padding: 10px;
     background-color: #ecf7f9;
     position: relative;
+    max-width: 95%;
 }
 
 .grid-container > div {
@@ -16,6 +17,7 @@ body {
     text-align: left;
     padding: 10px;
     background-color: #ecf7f9;
+
 }
 
 .itemB1 {

@@ -1,6 +1,6 @@
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
+    font-size: 24px;
     line-height: 1.428571429;
     color: #333;
     background-color: #ecf7f9;
@@ -73,7 +73,7 @@ table {
     margin-left: auto;
     margin-right: auto; 
     display: flex;
-    max-width: 70%;
+    max-width: 95%;
     position: relative;
   }
   

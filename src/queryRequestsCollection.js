@@ -42,6 +42,7 @@ class QueryRequestCollection {
                     DiscRef: jsonObj.DiscRef,
                     Artist: jsonObj.Artist,
                     Title: jsonObj.Title,
+                    Length: jsonObj.Length,
                     DateTime: new Date(),
                     State: false,
                     CompletedDateTime: 0

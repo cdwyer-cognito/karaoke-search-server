@@ -44,7 +44,21 @@ for (let i=0; i<elements.length;i++) {
     (elements)[i].addEventListener("click", function(){
         let selected = this.cells[5].innerHTML;
         if (selected != "") {
-            window.location.href = "/search/results/selected/" + selected;
+			function clickedline(selected){
+				window.location.href = "/search/results/selected/" + selected;
+
+				let timeleft = 10;
+    			let downloadTimer = setInterval(function(){
+        			timeleft--;
+        
+					if ( timeleft <= 0 ) {
+						console.log("timed out waiting for a response, retrying");
+						clearInterval(downloadTimer);
+						clickedline(selected);
+					}
+				},1000);
+			}
+			clickedline(selected);
         }
             
     });

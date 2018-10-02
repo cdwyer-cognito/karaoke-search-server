@@ -8,6 +8,7 @@ onload = function(){
         if ( timeleft <= 0 ) {
             clearInterval(downloadTimer);
             window.location.href = "/search/menu";
+            onload();
         }
     },1000);
 }

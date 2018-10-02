@@ -1,6 +1,17 @@
 searchMenu = function( endpoint ) {
     console.log("Clicked button " + endpoint);
     window.location.href = endpoint;
+
+    let timeleft = 10;
+    let downloadTimer = setInterval(function(){
+        timeleft--;
+        
+        if ( timeleft <= 0 ) {
+            console.log("timed out waiting for a response, retrying");
+            clearInterval(downloadTimer);
+            searchMenu(endpoint);
+        }
+    },1000);
 }
 
 clickSearch = function(){
@@ -25,6 +36,17 @@ clickSearch = function(){
         console.log("Sending request to " + encodeURI(url) );
         
         window.location.href = url;        
+
+        let timeleft = 10;
+        let downloadTimer = setInterval(function(){
+            timeleft--;
+           
+            if ( timeleft <= 0 ) {
+                console.log("timed out waiting for a response, retrying");
+                clearInterval(downloadTimer);
+                clickSearch();
+            }
+        },1000);
         
     }
 

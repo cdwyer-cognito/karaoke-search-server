@@ -1,5 +1,16 @@
 clickBack = function(){
     window.location.href = "/search/menu";
+
+    let timeleft = 10;
+    let downloadTimer = setInterval(function(){
+        timeleft--;
+        
+        if ( timeleft <= 0 ) {
+            console.log("timed out waiting for a response, retrying");
+            clearInterval(downloadTimer);
+            clickBack();
+        }
+    },1000);
 }
 
 clickButton = function(selection){
@@ -20,4 +31,15 @@ clickButton = function(selection){
     const url = "/search/results/" + field + "/startswith/" + selection;
 
     window.location.href = url;
+
+    let timeleft = 10;
+    let downloadTimer = setInterval(function(){
+        timeleft--;
+        
+        if ( timeleft <= 0 ) {
+            console.log("timed out waiting for a response, retrying");
+            clearInterval(downloadTimer);
+            clickButton(selection);
+        }
+    },1000);
 }

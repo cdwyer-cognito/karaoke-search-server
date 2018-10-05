@@ -95,7 +95,6 @@ table {
     font-size: 24px;
     margin: 0px 0px;
     border-radius: 4px;
-    float: left;
 }
 
 .button:active {
@@ -112,3 +111,12 @@ td:hover{
     background-color:lightgoldenrodyellow;
     cursor:pointer;
 }
+
+.header-left{
+    display: inline-block;
+}
+
+.header-right{
+    float: right;
+}
+

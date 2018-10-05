@@ -77,6 +77,7 @@ clickedCompleted = function(guid){
 onload = function(){
     let timeleft = 60;
     let refreshPage = setInterval(function(){
+        document.getElementById("countdown").innerHTML = "Refreshing in: " + (timeleft < 10 ? "0" : "") + timeleft;
         timeleft--;
         if ( timeleft <= 0 ) {
             clearInterval(refreshPage);

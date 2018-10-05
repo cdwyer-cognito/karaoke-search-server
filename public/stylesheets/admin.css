@@ -1,3 +1,8 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #ecf7f9;
+}
+
 .centerButtons {
     text-align: center;
     margin-left: auto;
@@ -27,4 +32,8 @@
 
 .button:hover {
     cursor: pointer;
+}
+
+.infoTxt{
+    display: inline-block;
 }

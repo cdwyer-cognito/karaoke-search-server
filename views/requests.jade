@@ -6,9 +6,10 @@ html
     body
         -let pendingTableData = pendingData
         -let completedTableData = completedData
-        div(class="table-container")
-            p
-                h2 Pending Requests    
+        div(class="header-left")
+            h2 Pending Requests
+        div(id="countdown", class="header-right")
+        div(class="table-container")  
             div(class='table-div')
                 table(class="order-table table")
                     thead
@@ -22,8 +23,9 @@ html
                             th Completed
                     tbody
                         each element in pendingTableData
-                            tr
-                                td=element.DateTime.toLocaleString()
+                            -let dt = element.DateTime.toLocaleString()
+                            tr  
+                                td=dt.match(/[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}/g)
                                 td=element.Singer
                                 td=element.Title
                                 td=element.Artist
@@ -44,8 +46,9 @@ html
                             th Disc Ref
                     tbody
                         each element in completedTableData
+                            -let dt = element.CompletedDateTime.toLocaleString()
                             tr
-                                td=element.CompletedDateTime.toLocaleString()
+                                td=dt.match(/[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}/g)
                                 td=element.Singer
                                 td=element.Title
                                 td=element.Artist

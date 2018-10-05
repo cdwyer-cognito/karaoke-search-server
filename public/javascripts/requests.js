@@ -80,9 +80,18 @@ onload = function(){
         document.getElementById("countdown").innerHTML = "Refreshing in: " + (timeleft < 10 ? "0" : "") + timeleft;
         timeleft--;
         if ( timeleft <= 0 ) {
+            document.getElementById("countdown").innerHTML = "Refreshing in:now";
             clearInterval(refreshPage);
             location.reload(true);
         }
     },1000);
 
+}
+
+navMainMenu = function(){
+    window.location.href = "/search/menu";
+}
+
+navAdminMenu = function(){
+    window.location.href = "/admin";
 }

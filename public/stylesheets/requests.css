@@ -120,3 +120,34 @@ td:hover{
     float: right;
 }
 
+
+.centerButtons {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.button-nav {
+    background-color: #cc0099;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    margin: 0px 10px;
+    border-radius: 4px;
+}
+
+.button-nav:active {
+    background-color: #990099;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button-nav:hover {
+    cursor: pointer;
+}

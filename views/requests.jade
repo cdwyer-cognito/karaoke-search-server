@@ -54,4 +54,8 @@ html
                                 td=element.Artist
                                 td=element.DiscRef
                                 td(style="display:none;")=element.GUID
+        br
+        div( class="centerButtons")
+            input(type="button", class="button-nav", value="Main Menu", onclick="navMainMenu()")
+            input(type="button", class="button-nav", value="Admin Menu", onclick="navAdminMenu()")
         script(type='text/javascript', src="/javascripts/requests.js")     

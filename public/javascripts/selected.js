@@ -1,3 +1,12 @@
+onload = function(){
+    document.getElementById("singer").addEventListener("keydown", function(event){
+        if (event.keyCode == 13 || event.which == 13){
+            event.preventDefault();
+            clickedSubmit();
+        }
+    });
+}
+
 clickedBack = function() {
     window.history.back();
 }

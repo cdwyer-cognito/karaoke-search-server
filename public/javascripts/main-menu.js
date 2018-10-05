@@ -1,3 +1,12 @@
+onload = function(){
+    document.getElementById("search").addEventListener("keydown", function(event){
+        if (event.keyCode == 13 || event.which == 13){
+            event.preventDefault();
+            clickSearch();
+        }
+    });
+}
+
 searchMenu = function( endpoint ) {
     console.log("Clicked button " + endpoint);
     window.location.href = endpoint;
@@ -19,8 +28,8 @@ clickSearch = function(){
     const search = document.getElementById("search").value
     let field;
 
-    if (search.length < 2 ) {
-       alert("Plese enter 2 or more characters");  
+    if (search.length < 3 ) {
+       alert("Plese enter 3 or more characters");  
     } else {
         
 

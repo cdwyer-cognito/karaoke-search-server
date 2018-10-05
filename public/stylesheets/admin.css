@@ -2,6 +2,10 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #ecf7f9;
 }
+.header{
+    display: inline-block;
+}
+
 
 .centerButtons {
     text-align: center;

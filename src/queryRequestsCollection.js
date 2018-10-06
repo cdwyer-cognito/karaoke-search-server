@@ -25,44 +25,44 @@ class QueryRequestCollection {
             s4() + '-' + s4() + s4() + s4();
         }
 
+        return new Promise( async function(resolve){
+                let client;
+            
+                try {
 
-        await async function() {
-            let client;
-        
-            try {
+                    client = await MongoClient.connect( url, { useNewUrlParser: true });
+                    console.log("Connected correctly to server");
+                    
+                    const db = client.db( dbName );
 
-                client = await MongoClient.connect( url, { useNewUrlParser: true });
-                console.log("Connected correctly to server");
+                    dataObj = {
+                        GUID: guid(),
+                        Singer: jsonObj.Singer,
+                        DiscRef: jsonObj.DiscRef,
+                        Artist: jsonObj.Artist,
+                        Title: jsonObj.Title,
+                        Length: jsonObj.Length,
+                        DateTime: new Date(),
+                        State: false,
+                        CompletedDateTime: 0
+                    }
                 
-                const db = client.db( dbName );
+                    let r = await db.collection( collection ).insertOne(dataObj);
 
-                dataObj = {
-                    GUID: guid(),
-                    Singer: jsonObj.Singer,
-                    DiscRef: jsonObj.DiscRef,
-                    Artist: jsonObj.Artist,
-                    Title: jsonObj.Title,
-                    Length: jsonObj.Length,
-                    DateTime: new Date(),
-                    State: false,
-                    CompletedDateTime: 0
+                    equal( 1, r.insertedCount );
+                    console.log("Data added to " + collection + " collection");  
+                        
+                } catch (err) {
+                    console.log( err.stack );
+                    resolve( { Status: "failed", Request: dataObj } );
                 }
             
-                let r = await db.collection( collection ).insertOne(dataObj);
-
-                equal( 1, r.insertedCount );
-                console.log("Data added to " + collection + " collection");  
-                    
-            } catch (err) {
-                console.log( err.stack );
-                return { Status: "failed", Request: dataObj };
-            }
-        
-            if (client) {
-                client.close();
-            }
-            return { Status: "success", Request: dataObj };
-        }();
+                if (client) {
+                    client.close();
+                }
+                console.log("Request " + dataObj.GUID + " has been added!");
+                resolve( { Status: "success", Request: dataObj } );
+        });
     }
 
     async getRequests(){
@@ -95,6 +95,39 @@ class QueryRequestCollection {
         }();
 
         return results;
+
+    }
+
+    
+    async getRequest(guid){
+
+        let result;
+        const MongoClient = require('mongodb').MongoClient;
+        const url = this.url;
+        const dbName = this.dbName;
+        const collection = this.collection;
+        
+        await async function() {
+            let client;
+        
+            try {
+                client = await MongoClient.connect( url, { useNewUrlParser: true } );
+                console.log("Connected correctly to server");
+        
+                const db = client.db( dbName );
+
+                const col = db.collection( collection );
+        
+                result = await col.find( { GUID: guid } ).toArray();
+
+            } catch (err) {
+                console.log( err.stack );
+            }
+        
+            client.close();
+        }();
+
+        return result;
 
     }
 

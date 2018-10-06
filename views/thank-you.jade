@@ -5,9 +5,10 @@ html
         link(rel='stylesheet', href='/stylesheets/thank-you.css')
     body
         div(class="text-container")
-            p Thank you for your request, it has been submitted to the DJ.
+            p Thank you #{reqJson.Singer}, your request of "#{reqJson.Title}" in the style of #{reqJson.Artist}. It has been submitted to the DJ.
             p Keep listening and you will be called when it's your turn to sing.
             p While you're waiting why not request another?
+            br
             br
             br
             p The DJ will not be able to tell you how long untill you are called. Please be patient.

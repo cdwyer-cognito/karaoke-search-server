@@ -53,18 +53,27 @@ router.post('/completed', function(req, res, next){
 });
 
 
-router.post('/new-request', function(req, res, next){
+router.post('/new-request', async function(req, res, next){
   const body = req.body;
 
-  let status = queryRequestsCollection.addRequest(body);
+  let obj = await queryRequestsCollection.addRequest(body);
 
-  res.send(status);
+  if ( obj.Status === "success" ) {
+    res.status(201);
+  } else {
+    res.status(500);
+  }
+
+  res.set('Content-Type', 'application/json');
+  res.send( JSON.stringify( obj ) ) ;
 
 });
 
-router.get('/new-request/thank-you', function(req, res, next){
+router.get('/new-request/thank-you/:guid', async function(req, res, next){
+  const requestsArray = await queryRequestsCollection.getRequest( req.params.guid );
+  console.log(requestsArray);
 
-  res.render('thank-you', {} );
+  res.render('thank-you', { reqJson: requestsArray[0] } );
 });
 
 module.exports = router;

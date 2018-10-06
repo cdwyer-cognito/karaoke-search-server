@@ -16,14 +16,16 @@ clickedSubmit = async function(){
     const singer = document.getElementById("singer").value;
 
     if (singer.length < 2 ) {
-        alert("Plese enter Your Name");  
+        alert("Please enter Your Name");  
+
     } else {
+
         let dataObj = JSON.parse( document.getElementById("jsonObj").value );
         let url = "/requests/new-request"
 
         dataObj["Singer"] = singer;
 
-        await fetch(url, {
+        fetch(url, {
             method: "POST",
             cache: "no-cache",
             headers: {
@@ -32,14 +34,21 @@ clickedSubmit = async function(){
             },
             body: JSON.stringify(dataObj)
         })
-        .then( (res) => {
-            if ( res.status === 200 ) {
+        .then( res => {
+            if ( res.status === 201 ) {
                 console.log(res);
-                window.location.href = "/requests/new-request/thank-you";
+                res.json()
+                .then(response => {
+                    window.location.href = "/requests/new-request/thank-you/" + response.Request.GUID;
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("Request Failed, please try again");
+                });
+            } else {
+                alert("Request Failed, please try again");
             }
         })
         .catch(err => console.log(err));
-
-    }
-
+   }
 }

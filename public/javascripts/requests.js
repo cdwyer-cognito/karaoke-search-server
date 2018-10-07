@@ -69,6 +69,9 @@ clickedCompleted = function(guid){
     .then( (res) => {
         if ( res.status === 200 ) {
             location.reload(true);
+        } else {
+            const response = res.json();
+            alert("Completed POST request failed\n" + response.body.Error);
         }
     })
     .catch(err => console.log(err));

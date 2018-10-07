@@ -139,28 +139,34 @@ class QueryRequestCollection {
         const dbName = this.dbName;
         const collection = this.collection;
 
-        await async function() {
+        return new Promise( async function(resolve){
             let client;
         
             try {
-            client = await MongoClient.connect( url,  { useNewUrlParser: true } );
-            console.log("Connected correctly to server");
+                client = await MongoClient.connect( url,  { useNewUrlParser: true } );
+                console.log("Connected correctly to server");
         
-            const db = client.db( dbName );
-            const col = db.collection( collection );
+                const db = client.db( dbName );
+                const col = db.collection( collection );
 
-            let r = await col.updateOne( { GUID: jsonObj.GUID },  {$set: {State: true, CompletedDateTime: new Date() } } );
-            equal( 1, r.matchedCount );
-            equal( 1, r.modifiedCount );
+                let r = await col.updateOne( { GUID: jsonObj.GUID },  {$set: {State: true, CompletedDateTime: new Date() } } );
+                equal( 1, r.matchedCount );
+                equal( 1, r.modifiedCount );
 
-            console.log("Request for " + jsonObj.GUID + " is complete");
+                console.log("Request for " + jsonObj.GUID + " is complete");
+                resolve({Status: "success", GUID: jsonObj.GUID });
                     
             } catch (err) {
-            console.log( err.stack );
+                console.log( err.stack );
+                resolve({Status: "failed", GUID: jsonObj.GUID, Error: err });
             }
-        
+    
             client.close();
-        }();
+        })
+        .catch(err => {
+            console.log(err)
+            return {Status: "failed", GUID: jsonObj.GUID, Error: err };
+        })
     }
 
     async clearRequestsCollection(){

@@ -44,16 +44,29 @@ router.get('/', async function(req, res, next) {
   res.render('requests', { pendingData: pending, completedData: completed } );
 });
 
-router.post('/completed', function(req, res, next){
+router.post('/completed', async function(req, res){
   const body = req.body;
+  res.set('Content-Type', 'application/json');
+  queryRequestsCollection.requestCompleted(body)
+  .then(obj => {
+    if ( obj.Status === "success" ) {
+      res.status(200);
+    } else {
+      res.status(500);
+    }
 
-  let status = queryRequestsCollection.requestCompleted(body);
+    res.send( JSON.stringify( obj ) ) ;
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(503);
+    res.send( "error: " + err ) ;
+  })
 
-  res.send(status);
 });
 
 
-router.post('/new-request', async function(req, res, next){
+router.post('/new-request', async function(req, res){
   const body = req.body;
 
   let obj = await queryRequestsCollection.addRequest(body);
@@ -71,7 +84,6 @@ router.post('/new-request', async function(req, res, next){
 
 router.get('/new-request/thank-you/:guid', async function(req, res, next){
   const requestsArray = await queryRequestsCollection.getRequest( req.params.guid );
-  console.log(requestsArray);
 
   res.render('thank-you', { reqJson: requestsArray[0] } );
 });

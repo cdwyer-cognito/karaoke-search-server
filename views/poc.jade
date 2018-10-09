@@ -1,0 +1,15 @@
+html
+    head
+        title Thank You
+        link(rel='stylesheet', href='/stylesheets/poc.css')
+    div(class="karaokeReadout")
+        p
+            span(data-text="" class="word" id="string")
+    br
+    div(class="additional-text")
+        p The DJ will not be able to tell you how 
+        p long untill you are called. Please be patient
+    div( class="centerButtons")
+        input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
+    div(id="jsonObjString", style="display:none;") #{JSON.stringify(reqJson)}
+    script(type='text/javascript', src="/javascripts/poc.js") 

@@ -13,7 +13,9 @@ html
             br
             p The DJ will not be able to tell you how long untill you are called. Please be patient.
             br
-            p(id="countdown") Returning to the Main Menu in: 10
+        div(class="karaokeReadout")
+            p(class="countdown")
+                span(data-text="    Returning to the main menu . . .    " class="word" id="string")    Returning to the main menu . . .    
         div( class="centerButtons")
             input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
         script(type='text/javascript', src="/javascripts/thank-you.js") 

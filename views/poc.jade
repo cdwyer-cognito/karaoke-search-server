@@ -1,15 +1,21 @@
+doctype html
 html
     head
         title Thank You
         link(rel='stylesheet', href='/stylesheets/poc.css')
-    div(class="karaokeReadout")
-        p
-            span(data-text="" class="word" id="string")
-    br
-    div(class="additional-text")
-        p The DJ will not be able to tell you how 
-        p long untill you are called. Please be patient
-    div( class="centerButtons")
-        input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
-    div(id="jsonObjString", style="display:none;") #{JSON.stringify(reqJson)}
-    script(type='text/javascript', src="/javascripts/poc.js") 
+    body
+        div(class="text-container")
+            p Thank you #{reqJson.Singer}, your request of "#{reqJson.Title}" in the style of #{reqJson.Artist}. It has been submitted to the DJ.
+            p Keep listening and you will be called when it's your turn to sing.
+            p While you're waiting why not request another?
+            br
+            br
+            br
+            p The DJ will not be able to tell you how long untill you are called. Please be patient.
+            br
+        div(class="karaokeReadout")
+            p(class="countdown")
+                span(data-text="    Returning to the main menu . . .    " class="word" id="string")    Returning to the main menu . . .    
+        div( class="centerButtons")
+            input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
+        script(type='text/javascript', src="/javascripts/poc.js") 

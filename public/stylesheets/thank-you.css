@@ -1,40 +1,84 @@
 body {
-    padding: 20px;
-    font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-color: #ecf7f9;
+  padding: 20px;
+  font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ecf7f9;
 }
 
 .text-container {
   position: relative;
+  text-align: center;
+}
+
+.countdown {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.karaokeReadout {
+background-color: #00054e;
+position: relative;
+margin: auto;
+text-align: center;
+padding-top: 20px;
+padding-bottom: 20px;
+width: 80%;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+.word {
+position: relative;
+white-space: nowrap;
+color: lightblue;
+text-shadow: 0 0 3px rgba(0,0,0,1); 
+word-wrap: break-word;
+}
+
+.word::after {
+content: attr(data-text);
+position: absolute;
+left: 0;
+top: 0;
+color: red;
+overflow: hidden;
+width: 40%;
+animation: run-text 15s infinite linear;
+text-shadow: 0 0 3px rgba(255,255,255,1); 
+word-wrap: break-word;
+}
+
+@keyframes run-text {
+from { width: 0 }
+to { width: 100% }
 }
 
 .centerButtons {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+width: 100%;
 }
 
 .button {
-  background-color: #cc0099;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  width: 30%;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 32px;
-  margin: 0px 10px;
-  border-radius: 4px;
+background-color: #cc0099;
+border: none;
+color: white;
+padding: 15px 32px;
+width: 30%;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 32px;
+margin: 0px 10px;
+border-radius: 4px;
 }
 
 .button:active {
-  background-color: #990099;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+background-color: #990099;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
 }
 
 .button:hover {
-  cursor: pointer;
+cursor: pointer;
 }

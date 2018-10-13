@@ -151,3 +151,8 @@ td:hover{
 .button-nav:hover {
     cursor: pointer;
 }
+
+.clients {
+    font-size: 16px;
+}
+

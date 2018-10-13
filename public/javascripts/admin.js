@@ -5,6 +5,54 @@ onload = function(){
         document.getElementById("ipAddress").innerHTML = ip;
     })
     .catch(err => console.log(err));
+    getConnectedClients();
+
+    let timeleft = 30;
+    setInterval(function(){
+        timeleft--;
+
+        if ( timeleft <= 0 ) {
+            console.log("Requesting connected clients Status")
+            getConnectedClients();
+            timeleft = 30
+        }
+    },1000);
+
+
+}
+
+getConnectedClients = function(){
+
+    fetch('/admin/clientsState', {
+        method: "GET",
+        cache: "no-cache",
+        headers: {
+            "Accept": "application/json; charset=utf-8"
+        },
+    })
+    .then(res => { 
+        if ( res.status === 200 ) {
+            res.json()
+            .then( response => {
+                console.log(response);
+                let htmlString = '<table class="order-table table"><thead><tr><th>IP Address</th><th>State</th><th>Last Ping</th></tr></thead><tbody>';
+
+                for ( let client of response.clients ){
+                    htmlString += '<tr><td>' + client[0]  + '</td><td><img src="/images/' + client[1] + '.png" class="centerImg"</td><td>' + client[2] + '</td></tr>';
+                }
+                htmlString += '</tbody></table>';
+                document.getElementById("clients").innerHTML = htmlString;
+            })
+            .catch(err => console.log(err));
+
+        }
+
+
+
+    })
+    .catch(res => console.log(err) );
+
+
 }
 
 postMessage = async function(url){

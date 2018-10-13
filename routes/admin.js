@@ -5,9 +5,10 @@ const loadXML = new LoadXML();
 const QueryRequestsCollection = require('../src/queryRequestsCollection');
 const queryRequestsCollection = new QueryRequestsCollection();
 const ip = require('ip');
+const remoteClients = {};
 
-router.get('/', async function(req, res, next) {
-  res.render('admin', { });
+router.get('/', async function( req, res ) {
+  res.render('admin', {});
 });
 
 router.post('/load-library', async function(req, res, next) {
@@ -46,6 +47,56 @@ router.post('/drop-requests', async function(req, res) {
     console.log("Returning 401");
     res.status(401).send(message);
   }
+});
+
+router.post('/ping', function(req, res){
+  let clientIp = req.body.ip;
+  let dateTime = req.body.dateTime;
+
+  remoteClients[ clientIp ] = new Date(dateTime);
+
+  res.header({
+    "Content-Type": "application/json; charset=utf-8",
+    "Accept": "application/json; charset=utf-8"
+  });
+  res.status(200).send('{}');
+});
+
+router.get('/clientsState', function(req, res ) {
+  const jsonObj = Object.keys(remoteClients);
+  let clientsArray = [];
+  let dt;
+  let timeDifference;
+  let connectionState;
+  const dtNow = new Date();
+
+  if (jsonObj.length > 0 ) {
+    jsonObj.forEach(function(ip) {
+      dt = remoteClients[ip];
+      timeDifference = dtNow - dt;
+
+      if ( timeDifference <= 30000 ) {
+        // connected
+        connectionState = 1;
+      } else if ( ( timeDifference > 30000 ) && ( timeDifference <= 600000) ) {
+        // warining
+        connectionState = 2;
+      } else {
+        // disconnected
+        connectionState = 3
+      }
+
+      clientsArray.push( [ ip, connectionState, dt ] );
+    });
+  }
+
+  res.header({
+    "Content-Type": "application/json; charset=utf-8",
+    "Accept": "application/json; charset=utf-8"
+  });
+
+  res.status(200).send( JSON.stringify( { clients: clientsArray } ) );
+  
 });
 
 

@@ -41,3 +41,98 @@ body {
 .infoTxt{
     display: inline-block;
 }
+
+.clients-div {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;  
+    text-align: center;
+
+}
+
+.clients {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.centerImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+.table caption+thead tr:first-child th, .table colgroup+thead tr:first-child th, .table thead:first-child tr:first-child th, .table caption+thead tr:first-child td, .table colgroup+thead tr:first-child td, .table thead:first-child tr:first-child td {
+    border-top: 0;
+}
+
+.table thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+th {
+    text-align: left;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-color: grey;
+}
+
+.light-table-filter {
+    font-size: 24px;
+    margin: 0px 8px;
+    padding: 14px 14px;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.table-div {
+    margin-left: auto;
+    margin-right: auto; 
+    display: flex;
+    max-width: 95%;
+    position: relative;
+  }
+  
+
+.table-div::after {
+    content: "";
+    clear: both;
+    display: table;
+}

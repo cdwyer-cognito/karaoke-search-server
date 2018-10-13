@@ -78,6 +78,7 @@ clickedCompleted = function(guid){
 }
 
 onload = function(){
+    getConnectedClients();
     let timeleft = 60;
     let refreshPage = setInterval(function(){
         document.getElementById("countdown").innerHTML = "Refreshing in: " + (timeleft < 10 ? "0" : "") + timeleft;
@@ -97,4 +98,38 @@ navMainMenu = function(){
 
 navAdminMenu = function(){
     window.location.href = "/admin";
+}
+
+getConnectedClients = function(){
+
+    fetch('/admin/clientsState', {
+        method: "GET",
+        cache: "no-cache",
+        headers: {
+            "Accept": "application/json; charset=utf-8"
+        },
+    })
+    .then(res => { 
+        if ( res.status === 200 ) {
+            res.json()
+            .then( response => {
+                console.log(response);
+                let htmlString = "Connected Clients: ";
+
+                for ( let client of response.clients ){
+                    htmlString += client[0] + '  <img src="/images/' + client[1] + '.png" class="centerImg">   ';
+                }
+                
+                document.getElementById("clients").innerHTML = htmlString;
+            })
+            .catch(err => console.log(err));
+
+        }
+
+
+
+    })
+    .catch(res => console.log(err) );
+
+
 }

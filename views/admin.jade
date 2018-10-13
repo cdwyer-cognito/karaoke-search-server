@@ -7,9 +7,6 @@ html
       title Admin Menu
     div(class="header")
         h1 Admin Menu
-        div(class="header-right")
-            div(id="ipLabel", class="infoTxt") Local IP Address: 
-            div(id="ipAddress", class="infoTxt")
     br
     br
     form
@@ -20,4 +17,10 @@ html
         div( class="centerButtons")
             input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
             input(type="button", class="button", value="Requests Menu", onclick="navRequestsMenu()")
+        br
+        h3 Local IP Address
+        div(id="ipAddress", class="infoTxt")
+        h3 Connected Clients
+        div(id="clients-div") 
+            div(id="clients")
         script(type='text/javascript', src="/javascripts/admin.js")

@@ -42,14 +42,6 @@ body {
     display: inline-block;
 }
 
-.clients-div {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;  
-    text-align: center;
-
-}
-
 .clients {
     position: relative;
     margin-left: auto;
@@ -60,7 +52,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 100%;
 }
 
 
@@ -135,4 +127,16 @@ table {
     content: "";
     clear: both;
     display: table;
+}
+
+.readOnlyText {
+    font-size: 24px;
+    background-color: lightgoldenrodyellow;
+    margin: 0px 8px;
+    padding: 8px 8px;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }

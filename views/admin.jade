@@ -18,9 +18,24 @@ html
             input(type="button", class="button", value="Main Menu", onclick="navMainMenu()")
             input(type="button", class="button", value="Requests Menu", onclick="navRequestsMenu()")
         br
-        h3 Local IP Address
-        div(id="ipAddress", class="infoTxt")
+        div(class='table-div')
+            table(class="order-table table")
+                thread
+                    tr
+                        th Local IP Address
+                        th Database Locations
+                tbody
+                    -let i = 0
+                    each filepath in virtualDJdatabaseXMLFilepaths 
+                        tr
+                            th
+                                if i == 0
+                                    input(type="text", id="ipAddress", name="ipAddress", class="readOnlyText", readonly )
+                            th
+                                input(type="text", name=filepath, class="readOnlyText", value=filepath, readonly )
+                        -i ++
+
         h3 Connected Clients
         div(id="clients-div") 
-            div(id="clients")
+            div(id="clients" class='table-div' )
         script(type='text/javascript', src="/javascripts/admin.js")

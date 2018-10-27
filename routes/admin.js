@@ -6,9 +6,10 @@ const QueryRequestsCollection = require('../src/queryRequestsCollection');
 const queryRequestsCollection = new QueryRequestsCollection();
 const ip = require('ip');
 const remoteClients = {};
+const paths = require('../paths');
 
 router.get('/', async function( req, res ) {
-  res.render('admin', {});
+  res.render('admin', paths );
 });
 
 router.post('/load-library', async function(req, res, next) {
@@ -19,7 +20,7 @@ router.post('/load-library', async function(req, res, next) {
   let message 
   if (serverIp === requestIp ) {
     message = await loadXML.loadXML();
-    console.log("Retuening 200");
+    console.log("Returning 200");
     res.status(200).send(message);
   } else {
     message = "failed - request did not come from server ip";

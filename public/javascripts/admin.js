@@ -2,7 +2,7 @@ onload = function(){
 
     getLocalIP()
     .then( function(ip){
-        document.getElementById("ipAddress").innerHTML = ip;
+        document.getElementById("ipAddress").value = ip;
     })
     .catch(err => console.log(err));
     getConnectedClients();
@@ -38,8 +38,15 @@ getConnectedClients = function(){
                 let htmlString = '<table class="order-table table"><thead><tr><th>IP Address</th><th>State</th><th>Last Ping</th></tr></thead><tbody>';
 
                 for ( let client of response.clients ){
-                    htmlString += '<tr><td>' + client[0]  + '</td><td><img src="/images/' + client[1] + '.png" class="centerImg"</td><td>' + client[2] + '</td></tr>';
+                    htmlString += '<tr><td>';
+                    htmlString += '<input type=\"text\" name=\"' + client[0] + '\" class=\"readOnlyText\" value=\"' + client[0] + '\" readonly >';
+                    htmlString += '</td><td>'
+                    htmlString += '<img src=\"/images/' + client[1] + '.png\" class=\"centerImg\"';
+                    htmlString += '</td><td>';
+                    htmlString += '<input type=\"text\" name=\"' + client[2] + '\" class=\"readOnlyText\" value=\"' + client[2] + '\" readonly >'; 
+                    htmlString += '</td></tr>';
                 }
+
                 htmlString += '</tbody></table>';
                 document.getElementById("clients").innerHTML = htmlString;
             })
@@ -57,7 +64,7 @@ getConnectedClients = function(){
 
 postMessage = async function(url){
     let res;
-    let ip = document.getElementById("ipAddress").innerHTML;
+    let ip = document.getElementById("ipAddress").value;
     console.log(ip);
     let bodyObj = { localIp: ip };
     await fetch(url, {
